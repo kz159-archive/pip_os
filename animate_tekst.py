@@ -30,7 +30,9 @@ def gen_boot():
     '1 0 0x0000A4 0x0000000000000000 {} 0 0x0000A4\n'
     '0x0000000000000000 1 0 0x000014 0x0000000000000000 {}\n'
     '0x0000000000000000 {}0 0x0000A4 0x0000000000000000000000000E003D\n'
-    ).format(random.choice(STARTS), random.choice(STARTS), random.choice(STARTS), random.choice(STARTS), random.choice(STARTS), random.choice(STARTS), random.choice(STARTS), random.choice(STARTS))
+    ).format(random.choice(STARTS), random.choice(STARTS), random.choice(STARTS),
+        random.choice(STARTS), random.choice(STARTS), random.choice(STARTS),
+            random.choice(STARTS), random.choice(STARTS))
     line += line*11
     return line
 
@@ -46,7 +48,8 @@ for x in range(0 ,300):
     time.sleep(.01)
 c.delete(tekst)
 gui.title("First title")
-canvas_text = c.create_text(50, 50,text="",font = ('monofonto', 15), fill = COLOR, anchor = NW)
+canvas_text = c.create_text(50, 50,text="",font = ('monofonto', 15),
+                fill = COLOR, anchor = NW)
 
 #Time delay between chars, in milliseconds
 delta = 25
@@ -64,4 +67,7 @@ for i in range(len(PIP_BOY_GREET) + 1):
     update_text = lambda s=s: c.itemconfigure(canvas_text, text=s)
     c.after(delay, update_text)
     delay += delta
+
+c.itemconfigure(canvas_text, text = PIP_BOY_GREET)   # NEED TO GET THIS WORK!!!
+c.itemconfigure(canvas_text, text = PIP_BOY_GREET+BLOCK)
 gui.mainloop()
