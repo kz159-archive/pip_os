@@ -3,7 +3,7 @@ from tkinter import *
 import time
 import random
 
-COLOR = '#4286f4'
+COLOR = '#40FF33'
 BLOCK = '▇'
 
 gui = Tk()
@@ -35,7 +35,8 @@ def gen_boot():
     return line
 
 #oval = c.create_oval(5,5,60,60,fill='pink')
-imagesprite = c.create_image(400,400,image=photo)
+#imagesprite = c.create_image(400,400,image=photo)
+c.create_rectangle(0, 0, 800, 800, fill='black')
 tekst = c.create_text(400,2500, text = gen_boot(), font = 'monofonto', fill = COLOR)
 a = 0
 b = -15
