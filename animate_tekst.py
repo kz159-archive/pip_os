@@ -11,10 +11,10 @@ var=IntVar()
 gui.geometry("800x800")
 c = Canvas(gui ,width=800 ,height=800)
 photo = PhotoImage(file = "wl.png")
+pipboy = PhotoImage(file = "pipboy.png")
 c.pack()
 
 PIP_BOY_GREET = 14*'*' + ' PIP-OS(R) V7.1.0.8 ' + 14*'*' + '\n\n' + 'COPYRIGHT 2075 ROBCO(R)\nLOADER V1.1\nEXEC VERSION 41.10\n64K RAM SYSTEM\n38911 BYTES FREE\nNO HOLOTAPE FOUND\nLOAD ROM(1): DEITRIX 303'
-
 
 def gen_boot():
 
@@ -53,14 +53,29 @@ delay = 0
 for i in range(1,5):
     bleep = c.create_text(50, 50,text=BLOCK,font = ('monofonto', 15), fill = COLOR, anchor = NW)
     gui.update()
-    time.sleep(0.8)
+    time.sleep(0.4)
     c.delete(bleep)
     gui.update()
-    time.sleep(0.8)
+    time.sleep(0.4)
 
-for i in range(len(PIP_BOY_GREET) + 1):
-    s = PIP_BOY_GREET[:i] + BLOCK
-    update_text = lambda s=s: c.itemconfigure(canvas_text, text=s)
-    c.after(delay, update_text)
-    delay += delta
+def do_greet():
+    delta = 25
+    delay = 0
+    for i in range(len(PIP_BOY_GREET) + 1):
+        s = PIP_BOY_GREET[:i] + BLOCK
+        update_text = lambda s=s: c.itemconfigure(canvas_text, text=s)
+        c.after(delay, update_text)
+        delay += delta
+
+def up_greet():
+    for g in range(0 ,100):
+        c.move(canvas_text,a,b)
+        gui.update()
+        time.sleep(.02)
+    pip = c.create_image(400,400,image=pipboy)
+
+c.after(0, do_greet)
+c.after(6000, up_greet)
+
+
 gui.mainloop()
